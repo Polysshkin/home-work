@@ -51,7 +51,7 @@ Derive a `CurrentAccount` subclass from the `Account` base class and provide its
 
 class CurrentAccount(Account):
     def __str__(self):
-        return f"Current Account - Account Number: {self.number}, Holder: {self.holder_name}, Balance: {self.balance}"
+        return f"Account Type: Current, Number: {self.number}, Balance: {self.balance}"
 
 """### Task 3
 
