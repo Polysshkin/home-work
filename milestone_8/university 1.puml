@@ -1,0 +1,107 @@
+ +------------------+
+|   Student       |
++------------------+
+| - id: int       |
+| - name: str     |
+| - dob: date     |
+| + calculateGPA()|
++------------------+
+        | 1
+        |
+        | *  
++------------------+
+|   Enrollment    |
++------------------+
+| - student: Student |
+| - course: Course  |
+| - grade: float   |
++------------------+
+        | *
+        |
+        | 1
++------------------+
+|   Course        |
++------------------+
+| - id: int       |
+| - name: str     |
+| - professor: Professor |
++------------------+
+        | 1
+        |
+        | *
++------------------+
+|   Professor     |
++------------------+
+| - id: int       |
+| - name: str     |
+| + teach()       |
++------------------+
+
++------------------+
+|   Schedule      |
++------------------+
+| - course: Course|
+| - time: str     |
+| - room: str     |
++------------------+
+
++------------------+
+|  Administration |
++------------------+
+| + createReport() |
+| + calculateGPA() |
++------------------+
+        |
+        | *
+        |
++------------------+
+|   Student       |
++------------------+
+____________________________________________________________________________
+
+@startuml
+class Student {
+    - id: int
+    - name: str
+    - dob: date
+    - courses: List<Course>
+    + calculateGPA(period: str)
+}
+
+class Professor {
+    - id: int
+    - name: str
+    + teach(course: Course)
+}
+
+class Course {
+    - id: int
+    - name: str
+    - professor: Professor
+    - students: List<Student>
+}
+
+class Enrollment {
+    - student: Student
+    - course: Course
+    - grade: float
+}
+
+class Schedule {
+    - course: Course
+    - time: str
+    - room: str
+}
+
+class Administration {
+    + createReport()
+    + calculateGPA(student: Student, period: str)
+}
+
+Student "1" -- "*" Enrollment
+Course "1" -- "*" Enrollment
+Professor "1" -- "*" Course
+Course "1" -- "*" Schedule
+Administration "1" -- "*" Student
+
+@enduml
