@@ -1,0 +1,27 @@
+@startuml book_organizer
+
+class Book {
+  - title: str
+  - author: str
+  - category: str
+}
+
+class Shelf {
+  - id: int
+  - books: List[Book]
+  + add_book()
+  + sort_books()
+}
+
+class Room {
+  - shelves: List[Shelf]
+  + organize_books_by_category()
+  + sort_books_on_shelves()
+}
+
+Room "1" --> "*" Shelf
+Shelf "1" --> "*" Book
+
+@enduml
+
+
